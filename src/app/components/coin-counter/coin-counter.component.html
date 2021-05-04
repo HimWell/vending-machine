@@ -1,0 +1,52 @@
+<div class="main-div">
+
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Select Currency and Calculate</mat-card-title>
+        </mat-card-header>
+
+        <br />
+
+        <form #f="ngForm" ngNativeValidate>
+
+            <mat-card-content>
+
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Select Currency</mat-label>
+                        <mat-select matInput placeholder="Select Currency" #currencyValue id="currencyValue.value" name="currencyValue.value" [(ngModel)]="currencyValue.value" required>
+                            <mat-option *ngFor="let currency of currencies" [value]="currency.id">
+                                {{ currency.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-icon matSuffix>attach_money</mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Enter Amount</mat-label>
+                        <input type="number" matInput placeholder="Enter Amount" id="amount" name="amount" [(ngModel)]="coin.amount" required min="0" />
+                        <mat-icon matSuffix>payment</mat-icon>
+                    </mat-form-field>
+                </div>
+
+            </mat-card-content>
+
+            <mat-card-actions>
+                <button [disabled]="f.invalid" mat-raised-button color="primary" (click)="calculateCoin()">
+          Calculate
+          <span class="material-icons"> calculate </span>
+        </button>
+            </mat-card-actions>
+
+        </form>
+
+        <!-- !!coin.total - validation for text to display after user input and calculate button is clicked. !!coin.amount used to show that if statement works -->
+        <ng-container *ngIf="!!coin.amount">
+            <h3 style="color: red;">Result: Your amount of {{coin.amount }} cents requires {{coin.total}}</h3>
+        </ng-container>
+
+    </mat-card>
+
+</div>
