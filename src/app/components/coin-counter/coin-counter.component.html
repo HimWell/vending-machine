@@ -2,7 +2,7 @@
 
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Select Currency and Calculate</mat-card-title>
+            <mat-card-title>Himal's Vending Machine Counter</mat-card-title>
         </mat-card-header>
 
         <br />
@@ -10,6 +10,18 @@
         <form #f="ngForm" ngNativeValidate>
 
             <mat-card-content>
+
+                <!-- <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Select Product</mat-label>
+                        <mat-select matInput placeholder="Select Product" #productValue id="productValue.value" name="productValue.value" [(ngModel)]="productValue.value" required>
+                            <mat-option *ngFor="let product of products" [value]="product.id">
+                                {{ product.price }}c - {{ product.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-icon matSuffix>shopping_basket</mat-icon>
+                    </mat-form-field>
+                </div> -->
 
                 <div>
                     <mat-form-field appearance="outline">
@@ -42,10 +54,9 @@
 
         </form>
 
-        <!-- !!coin.total - validation for text to display after user input and calculate button is clicked. !!coin.amount used to show that if statement works -->
-        <ng-container *ngIf="!!coin.amount">
-            <h3 style="color: red;">Result: Your amount of {{coin.amount }} cents requires {{coin.total}}</h3>
-        </ng-container>
+        <!-- <ng-container *ngIf="!!coin.total">
+            <h3 style="color: red;">Your amount of {{ coin.amount }} cents requires {{ coin.total }}</h3>
+        </ng-container> -->
 
     </mat-card>
 
