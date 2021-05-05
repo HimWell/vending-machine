@@ -38,21 +38,22 @@ export class CoinCounterComponent implements OnInit {
   calculateCoin(): void {
     // RSA
     if (this.currencyValue.value === 'rsa') {
-      console.log('Minimum RSA coins required is: -->', this.vendingMachineCalculation([50 , 20, 10, 5, 1], this.coin.amount ));
+      console.log('Minimum RSA coins required is: -->', this.vendingMachineCalculation([50 , 20, 10, 5, 1], this.coin.amount));
     }
     // USD
     if (this.currencyValue.value === 'usd') {
-      console.log('Minimum USD coins required is: -->', this.vendingMachineCalculation([25, 10, 5, 1], this.coin.amount ));
+      console.log('Minimum USD coins required is: -->', this.vendingMachineCalculation([25, 10, 5, 1], this.coin.amount));
     }
     // EUR + GBP
     if (this.currencyValue.value === 'eur' || this.currencyValue.value === 'gbp') {
-      console.log('Minimum EUR coins required is: -->', this.vendingMachineCalculation([50, 20, 10, 5, 2, 1], this.coin.amount ));
+      console.log('Minimum EUR coins required is: -->', this.vendingMachineCalculation([50, 20, 10, 5, 2, 1], this.coin.amount));
     }
   }
 
   // tslint:disable-next-line:typedef
   vendingMachineCalculation(coins: number[], total: any) {
-    const coinDenominations = [];
+    const coinDenominations: number[] = [];
+    this.coin.total = coinDenominations;
 
     for (let i = 0; i < coins.length; i++) {
       coinDenominations[i] = 0;

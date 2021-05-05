@@ -1,6 +1,6 @@
 # VendingMachinineCoinCounter
 
-This a simple UI build in Angular using Angular Material for a vending machine to calculate the number of coins needed. Note no Back end was completed.
+This a simple UI build in Angular using Angular Material for a vending machine to calculate the number of coins needed.
 
 run npm install for packages
 
