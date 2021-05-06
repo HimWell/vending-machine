@@ -2,7 +2,7 @@
 
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Himal's Vending Machine Counter</mat-card-title>
+            <mat-card-title style="color: red;">Sale Now On!!! 1970's Special Price 😀 </mat-card-title>
         </mat-card-header>
 
         <br />
@@ -11,17 +11,17 @@
 
             <mat-card-content>
 
-                <!-- <div>
+                <div>
                     <mat-form-field appearance="outline">
                         <mat-label>Select Product</mat-label>
                         <mat-select matInput placeholder="Select Product" #productValue id="productValue.value" name="productValue.value" [(ngModel)]="productValue.value" required>
-                            <mat-option *ngFor="let product of products" [value]="product.id">
-                                {{ product.price }}c - {{ product.name }}
+                            <mat-option *ngFor="let product of products" [value]="product.price">
+                                {{ product.price }} cents - {{ product.name }}
                             </mat-option>
                         </mat-select>
                         <mat-icon matSuffix>shopping_basket</mat-icon>
                     </mat-form-field>
-                </div> -->
+                </div>
 
                 <div>
                     <mat-form-field appearance="outline">
@@ -38,7 +38,7 @@
                 <div>
                     <mat-form-field appearance="outline">
                         <mat-label>Enter Amount</mat-label>
-                        <input type="number" matInput placeholder="Enter Amount" id="amount" name="amount" [(ngModel)]="coin.amount" required min="0" />
+                        <input type="number" matInput placeholder="Enter Amount" id="amount" name="amount" [(ngModel)]="amount" required min="0" />
                         <mat-icon matSuffix>payment</mat-icon>
                     </mat-form-field>
                 </div>
@@ -47,16 +47,12 @@
 
             <mat-card-actions>
                 <button [disabled]="f.invalid" mat-raised-button color="primary" (click)="calculateCoin()">
-          Calculate
-          <span class="material-icons"> calculate </span>
+          Purchase Item
+          <span class="material-icons">shopping_cart</span>
         </button>
             </mat-card-actions>
 
         </form>
-
-        <ng-container *ngIf="!!coin.total">
-            <h3 style="color: red;">Your amount of {{ coin.amount }} cents requires {{ coin.total }}</h3>
-        </ng-container>
 
     </mat-card>
 

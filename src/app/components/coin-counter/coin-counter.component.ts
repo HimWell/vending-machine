@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Coin } from 'src/app/models/Coin';
 import { Currency } from 'src/app/models/Currency';
 import { Product } from 'src/app/models/Product';
 
@@ -19,16 +18,18 @@ export class CoinCounterComponent implements OnInit {
   ];
 
   // product lookup values
-  // products: Product[] = [
-  //   { id: '1', name: 'Coca-Cola', price: 45 },
-  //   { id: '2', name: 'Lays Chips', price: 35 },
-  //   { id: '3', name: 'Aero Chocolate', price: 60 },
-  //   { id: '4', name: 'Caramel Biscuits', price: 30 },
-  // ];
+  products: Product[] = [
+    { id: '1', name: 'Coca-Cola', price: 45 },
+    { id: '2', name: 'Lays Chips', price: 35 },
+    { id: '3', name: 'Aero Chocolate', price: 60 },
+    { id: '4', name: 'Caramel Biscuits', price: 30 },
+  ];
 
-  coin: Coin = {};
+  product: Product = {};
   @ViewChild('currencyValue') currencyValue: any;
-  // @ViewChild('productValue') productValue: any;
+  @ViewChild('productValue') productValue: any;
+  amount = 0;
+  total = 0;
 
   constructor() { }
 
@@ -36,24 +37,30 @@ export class CoinCounterComponent implements OnInit {
   }
 
   calculateCoin(): void {
+    const rsaCoins = [50 , 20, 10, 5, 1];
+    const usdCoins = [25, 10, 5, 1];
+    const eurGbpCoins = [50, 20, 10, 5, 2, 1];
+
     // RSA
     if (this.currencyValue.value === 'rsa') {
-      console.log('Minimum RSA coins required is: -->', this.vendingMachineCalculation([50 , 20, 10, 5, 1], this.coin.amount));
+      console.log('Minimum coin change in RSA is: -->', this.vendingMachineCalculation(rsaCoins, this.amount),
+      'Coin array order: [0] -> 50 cents, [1] -> 20 cents, [2] -> 10 cents, [3] -> 5 cents, [4] -> 1 cents');
     }
     // USD
     if (this.currencyValue.value === 'usd') {
-      console.log('Minimum USD coins required is: -->', this.vendingMachineCalculation([25, 10, 5, 1], this.coin.amount));
+      console.log('Minimum coin change in USD is: -->', this.vendingMachineCalculation(usdCoins, this.amount),
+      'Coin array order: [0] -> 25 cents, [1] -> 10 cents, [2] -> 5 cents, [3] -> 1 cent');
     }
     // EUR + GBP
     if (this.currencyValue.value === 'eur' || this.currencyValue.value === 'gbp') {
-      console.log('Minimum EUR coins required is: -->', this.vendingMachineCalculation([50, 20, 10, 5, 2, 1], this.coin.amount));
+      console.log('Minimum coin change in EUR or GBP is: -->', this.vendingMachineCalculation(eurGbpCoins, this.amount),
+      'Coin array order: [0] -> 50 cents, [1] -> 20 cents, [2] -> 10 cents, [3] -> 5 cents, [4] -> 2 cents, [5] -> 1 cent');
     }
   }
 
-  // tslint:disable-next-line:typedef
-  vendingMachineCalculation(coins: number[], total: any) {
+  vendingMachineCalculation(coins: number[], total: any): any {
     const coinDenominations: number[] = [];
-    this.coin.total = coinDenominations;
+    total = this.amount - this.productValue.value;
 
     for (let i = 0; i < coins.length; i++) {
       coinDenominations[i] = 0;
@@ -63,6 +70,7 @@ export class CoinCounterComponent implements OnInit {
       coinDenominations[c] = Math.floor( total / coins[c] );
       total -= coinDenominations[c] * coins[c];
   }
+    // Note to see outcome of coin result please check console
     return coinDenominations;
   }
 }
