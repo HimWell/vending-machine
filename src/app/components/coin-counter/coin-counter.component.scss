@@ -19,3 +19,18 @@ mat-card {
     width: 300px;
     text-align: center;
 }
+
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    border: 1px solid #50c1d3;
+    background-color: rgba(120, 216, 231, 0.2);
+    font-weight: bold;
+    color: #2f9aae;
+}
