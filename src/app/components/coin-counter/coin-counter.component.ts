@@ -30,6 +30,7 @@ export class CoinCounterComponent implements OnInit {
   @ViewChild('productValue') productValue: any;
   amount = 0;
   total = 0;
+  x: any;
 
   constructor() { }
 
@@ -41,20 +42,16 @@ export class CoinCounterComponent implements OnInit {
     const usdCoins = [25, 10, 5, 1];
     const eurGbpCoins = [50, 20, 10, 5, 2, 1];
 
-    // RSA
     if (this.currencyValue.value === 'rsa') {
-      console.log('Minimum coin change in RSA is: -->', this.vendingMachineCalculation(rsaCoins, this.amount),
-      'Coin array order: [0] -> 50 cents, [1] -> 20 cents, [2] -> 10 cents, [3] -> 5 cents, [4] -> 1 cents');
+      this.x = this.vendingMachineCalculation(rsaCoins, this.amount) + ' (Coin order: 50 cents, 20 cents, 10 cents, 5 cents, 1 cents)';
     }
     // USD
     if (this.currencyValue.value === 'usd') {
-      console.log('Minimum coin change in USD is: -->', this.vendingMachineCalculation(usdCoins, this.amount),
-      'Coin array order: [0] -> 25 cents, [1] -> 10 cents, [2] -> 5 cents, [3] -> 1 cent');
+      this.x = this.vendingMachineCalculation(usdCoins, this.amount) + ' (Coin order: 25 cents, 10 cents, 5 cents, 1 cent)';
     }
     // EUR + GBP
     if (this.currencyValue.value === 'eur' || this.currencyValue.value === 'gbp') {
-      console.log('Minimum coin change in EUR or GBP is: -->', this.vendingMachineCalculation(eurGbpCoins, this.amount),
-      'Coin array order: [0] -> 50 cents, [1] -> 20 cents, [2] -> 10 cents, [3] -> 5 cents, [4] -> 2 cents, [5] -> 1 cent');
+      this.x = this.vendingMachineCalculation(eurGbpCoins, this.amount) + ' (Coin order: 50 cents, 20 cents, 10 cents, 5 cents, 2 cents, 1 cent)';
     }
   }
 
