@@ -53,6 +53,10 @@
             </mat-card-actions>
 
         </form>
+      
+        <ng-container *ngIf="!!x">
+            <div class="alert alert-success">{{x}}</div>
+        </ng-container>
 
     </mat-card>
 
